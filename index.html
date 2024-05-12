@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>surpresa :)</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+            height: 100vh;
+            background-image: url('assets/fundo.jpg'); /* Corrigido o caminho da imagem de fundo */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .retangulo {
+            position: absolute;
+            top: 50%;
+            left: calc(10% + 20px);
+            transform: translateY(-50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 350px;
+            height: 550px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('assets/1.jpg'); /* Corrigido o caminho da imagem */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .retangulo-menor {
+            position: absolute;
+            top: calc(30% + 20px);
+            right: calc(16% + 20px);
+            transform: translateY(-50%) rotate(90deg);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 340px;
+            height: 520px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            background-image: url('assets/2.png'); /* Corrigido o caminho da imagem */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .player-audio {
+            position: absolute;
+            top: calc(2% + 20px + 385px);
+            right: calc(19% + 20px);
+        }
+
+        .musica {
+            position: absolute;
+            top: calc(2% + 45px + 385px + 30px);
+            right: calc(22% + 10px);
+        }
+
+        .tooltip {
+            position: absolute;
+            display: none;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1;
+            width: 70px;
+            font-size: 14px;
+        }
+
+        .retangulo:hover .tooltip {
+            display: block;
+        }
+
+        .top-left-tooltip {
+            top: 100px;
+            left: 10px;
+        }
+
+        .top-right-tooltip {
+            top: 100px;
+            right: 10px;
+        }
+
+        .bottom-left-tooltip {
+            bottom: 100px;
+            left: 10px;
+        }
+
+        .bottom-right-tooltip {
+            bottom: 100px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="retangulo"></div>
+    <div class="retangulo-menor"></div>
+    <div class="tooltip top-left-tooltip">Kaylane</div>
+    <div class="tooltip top-right-tooltip">Eu te amo</div>
+    <div class="tooltip bottom-left-tooltip">Eu te amo</div>
+    <div class="tooltip bottom-right-tooltip">Giovanna</div>
+    <audio class="player-audio" controls>
+        <source src="assets/musica.mp3" type="audio/mp3"> <!-- Corrigido o caminho do áudio -->
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
+    <p class="musica">Bluebird - Alexis Ffrench</p>
+
+    <script>
+        function showTooltip(event, className) {
+            var tooltip = document.querySelector('.' + className);
+            var x = event.clientX;
+            var y = event.clientY;
+            var windowHeight = window.innerHeight;
+            var windowWidth = window.innerWidth;
+
+            if (className === 'top-left-tooltip' && x < 70 && y < 150) {
+                tooltip.style.display = 'block';
+            } else if (className === 'top-right-tooltip' && x > windowWidth - 70 && y < 150) {
+                tooltip.style.display = 'block';
+            } else if (className === 'bottom-left-tooltip' && x < 70 && y > windowHeight - 130) {
+                tooltip.style.display = 'block';
+            } else if (className === 'bottom-right-tooltip' && x > windowWidth - 70 && y > windowHeight - 130) {
+                tooltip.style.display = 'block';
+            } else {
+                tooltip.style.display = 'none';
+            }
+        }
+
+        document.addEventListener('mousemove', function(event) {
+            showTooltip(event, 'top-left-tooltip');
+            showTooltip(event, 'top-right-tooltip');
+            showTooltip(event, 'bottom-left-tooltip');
+            showTooltip(event, 'bottom-right-tooltip');
+        });
+    </script>
+</body>
+</html>
+
